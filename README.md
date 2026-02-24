@@ -1,1 +1,2 @@
 # CUGA-Atlas
+CUGA-Atlas is a comprehensive, open-source resource for understanding the genomic and molecular landscape of urothelial carcinoma (UC), including bladder cancer (BCa) and upper tract urothelial carcinoma (UTUC), in the Chinese population. This project integrates whole-genome/exome sequencing, copy number variations, structural variations, transcriptomic profiles, and clinical annotations to build a high-resolution multi-omics atlas for precision oncology and translational research.
