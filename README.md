@@ -4,3 +4,8 @@ The Chinese Urothelial Carcinoma Genome Atlas (CUGA) is a large, uniformly proce
 Beyond whole-genome sequencing, the dataset integrates additional omics layers for subsets of patients, including bulk RNA sequencing for 354 patients (mean 144 million clean reads), whole-exome sequencing for 226 patients at approximately 200× coverage, single-cell RNA sequencing for 31 patients, and digital whole-slide histopathology images for 492 patients. Clinical annotation includes a median diagnosis age of 68 years (range 31–93), a male predominance of 68%, and a balanced distribution between muscle-invasive (49%) and non–muscle-invasive disease (51%), with all samples obtained prior to systemic anticancer therapy. Collectively, CUGA represents one of the largest publicly available whole-genome–centered urothelial carcinoma datasets integrating genomic, transcriptomic, spatial, and pathological modalities, enabling comprehensive investigation of structural variation, ecDNA, noncoding drivers, tumor evolution, and tumor ecosystem states.
 
 <img width="861" height="216" alt="截屏2026-02-25 14 08 12" src="https://github.com/user-attachments/assets/e798eafc-b41d-46e3-9bee-bae8882ca631" />
+
+#Data
+We hope that the CUGA dataset will be a valuable resource for the urothelial carcinoma research community.
+
+If you have requests for raw data, processed or downstream data, or require any additional information or assistance, please feel free to contact: Dr. Wei Lv (wei_lv2024@163.com or lvwei@him.cas.cn)
