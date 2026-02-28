@@ -6,7 +6,7 @@ d1 <- d[,c(5,6,7,11,12,13)]
 colnames(d1) <- c("chr","pos1","pos2","ref","alt","patient")
 write.table(d1,"/share/home/luoylLab/zengyuchen/PROJECT/chromothripsis/Noncoding-Driver/input/669samples_all_mutation_dupfromcase_hg19_activate.mutation",sep="\t",quote=F,row.names=F)
 
-## Run ActiveDriveWGS
+## Run ActiveDriverWGS
 library("ActiveDriverWGS")
 args <- commandArgs(trailingOnly=TRUE)
 
