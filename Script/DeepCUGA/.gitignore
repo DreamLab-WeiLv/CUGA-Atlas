@@ -1,0 +1,21 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyTorch weights and feature
+*.pth
+*.pt
+
+# dataset and results
+*.h5
+*.csv
+*.npy
+
+# logs
+results/
+logs/
+runs/
+
+# cache
+.DS_Store
