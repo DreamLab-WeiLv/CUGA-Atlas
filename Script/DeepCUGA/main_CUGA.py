@@ -527,7 +527,7 @@ if __name__ == '__main__':
     parser.add_argument('--num_folds', type=int, default=5, help='number of folds (default: 5)')
 
     #-----------------------MTL setting--------------------------------------------------------------------------------------------
-    parser.add_argument('--lambda_event', type=float, default=0.8, help='Weighting coefficient for genomic events loss')
+    parser.add_argument('--lambda_event', type=float, default=1.0, help='Weighting coefficient for genomic events loss')
     parser.add_argument('--csv_file', type=str,default=r'/path/CUGA-Subtype-5classes.csv',help='path to the main subtype csv file')
     parser.add_argument('--features_path', type=str, default=r'/path/h5_files/', help='CONCH-20X feats')
     parser.add_argument('--results_dir', type=str, default=r'/path/DeepCUGA/', help='results directory')
