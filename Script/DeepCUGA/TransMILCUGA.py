@@ -53,13 +53,13 @@ class TransCUGA(nn.Module):
         self.norm = nn.LayerNorm(512)
 
         # 5 event heads (WGD, Chromothripsis, ecDNA, TP53, FGFR3)
-        self.binary_event_heads = nn.ModuleList([nn.Linear(512, 2) for _ in range(5)])
+        self.binary_event_heads = nn.ModuleList([nn.Linear(512, 1) for _ in range(5)])
 
         # 1. Morphological-driven branch: Mapping directly from 512-dimensional Z_cls to subtypes
         self.morphology_head = nn.Linear(512, self.n_classes)
 
-        # 2. Genome-driven branching: Receive the concatenated probability vector V_genomic (5 events * 2 probabilities = 10 dimensions)
-        self.genotype_head = nn.Linear(10, self.n_classes)
+        # 2. Genome-driven branching: Receive the concatenated probability vector V_genomic (5 events * 1 probability = 5 dimensions)
+        self.genotype_head = nn.Linear(5, self.n_classes)
 
     def forward(self, x):
         if x.dim() == 2:
@@ -101,7 +101,7 @@ class TransCUGA(nn.Module):
         # Calculate the Logits of five events
         logits_binary = [head(cls_feat) for head in self.binary_event_heads]
 
-        probs_binary = [F.softmax(l, dim=1) for l in logits_binary]
+        probs_binary = [torch.sigmoid(l) for l in logits_binary]
 
         v_genomic = torch.cat(probs_binary, dim=1)
 

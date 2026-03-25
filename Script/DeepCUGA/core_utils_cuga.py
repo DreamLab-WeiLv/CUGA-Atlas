@@ -18,7 +18,7 @@ def train(args, model, optimizer, data_loader, device):
         weights = torch.tensor(args.weights, dtype=torch.float32).to(device)
 
     criterion_subtype = FocalLoss(class_num=args.num_classes, alpha=weights).to(device)
-    criterion_event = nn.CrossEntropyLoss().to(device)
+    criterion_event = nn.BCEWithLogitsLoss().to(device)
 
     optimizer.zero_grad()
     data_loader = tqdm(data_loader, file=sys.stdout)
@@ -40,7 +40,7 @@ def train(args, model, optimizer, data_loader, device):
         loss_subtype = alpha * loss_path + (1 - alpha) * loss_geno
 
         # 5 binary categorical events Losses
-        loss_binary = sum([criterion_event(results['binary_events'][i], labels[:, i + 1]) for i in range(5)]) / 5.0
+        loss_binary = sum([criterion_event(results['binary_events'][i], labels[:, i + 1].float().unsqueeze(1)) for i in range(5)]) / 5.0
 
         # L_total = L_subtype + lambda * L_event
         combined_loss = loss_subtype + lambda_event * loss_binary
@@ -68,7 +68,7 @@ def evaluate(args, model, data_loader, device, search_alpha=False, fixed_alpha=0
 
     weights = torch.tensor(args.weights, dtype=torch.float32).to(device) if hasattr(args, 'weights') else None
     criterion_subtype = FocalLoss(class_num=args.num_classes, alpha=weights).to(device)
-    criterion_event = nn.CrossEntropyLoss().to(device)
+    criterion_event = nn.BCEWithLogitsLoss().to(device)
 
     lambda_event = getattr(args, 'lambda_event', 1.0)
 
@@ -84,7 +84,7 @@ def evaluate(args, model, data_loader, device, search_alpha=False, fixed_alpha=0
         loss_geno = criterion_subtype(results['logits_geno'], labels[:, 0])
         loss_subtype = 0.5 * loss_path + 0.5 * loss_geno
 
-        loss_binary = sum([criterion_event(results['binary_events'][i], labels[:, i + 1]) for i in range(5)]) / 5.0
+        loss_binary = sum([criterion_event(results['binary_events'][i], labels[:, i + 1].float().unsqueeze(1)) for i in range(5)]) / 5.0
         current_loss = loss_subtype + lambda_event * loss_binary
         val_loss += current_loss.item()
 
